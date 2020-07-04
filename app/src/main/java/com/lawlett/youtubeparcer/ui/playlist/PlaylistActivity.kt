@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.model.Playlist
 import com.lawlett.youtubeparcer.ui.playlist.recycler.PlayListAdapter
+import kotlinx.android.synthetic.main.activity_playlist.*
 
 class PlaylistActivity : AppCompatActivity(), PlayListAdapter.PlaylistViewHolder.IOnClickListener {
 
@@ -24,10 +25,9 @@ class PlaylistActivity : AppCompatActivity(), PlayListAdapter.PlaylistViewHolder
         viewModel = ViewModelProviders.of(this).get(PlaylistViewModel::class.java)
         setupToSubscribe()
 
-        val recyclerView: RecyclerView = findViewById(R.id.playlist_recycler)
 
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+        playlist_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        playlist_recycler.adapter = adapter
     }
 
     private fun setupToSubscribe() {
