@@ -37,10 +37,10 @@
 
             <ImageView
                 android:id="@+id/more_btn"
-                android:layout_width="32sp"
-                android:layout_height="32sp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 app:srcCompat="@drawable/ic_info"
-                android:layout_marginStart="65dp"/>
+                android:layout_marginStart="100dp"/>
 
         </LinearLayout>
     </RelativeLayout>
