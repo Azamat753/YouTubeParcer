@@ -10,4 +10,6 @@
     <dimen name="margin95">95dp</dimen>
     <dimen name="txSize23">23sp</dimen>
     <dimen name="size30">30dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="margin80">80dp</dimen>
 </resources>
