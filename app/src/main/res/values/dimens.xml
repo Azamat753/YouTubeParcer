@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="txSize40">20sp</dimen>
+    <dimen name="width190">190dp</dimen>
+    <dimen name="txSize18">18sp</dimen>
+    <dimen name="margin_65">65dp</dimen>
+    <dimen name="margin95">95dp</dimen>
+    <dimen name="txSize23">23sp</dimen>
+    <dimen name="size30">30dp</dimen>
+</resources>

@@ -17,8 +17,8 @@
 
             <ImageView
                 android:id="@+id/settings_view"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/size30"
+                android:layout_height="@dimen/size30"
                 android:visibility="invisible" />
 
             <TextView
@@ -26,10 +26,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="95dp"
+                android:layout_marginStart="@dimen/margin95"
                 android:text="Прогресс"
                 android:textColor="@android:color/black"
-                android:textSize="23dp"
+                android:textSize="@dimen/txSize23"
                 android:textStyle="bold"
                 android:visibility="invisible" />
 
@@ -37,7 +37,7 @@
                 android:id="@+id/more_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="@dimen/margin_65"
                 app:srcCompat="@drawable/ic_info_icon" />
 
         </LinearLayout>
