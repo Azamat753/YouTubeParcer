@@ -49,17 +49,12 @@ class PlayListAdapter(
 
         fun bind(playlistModel: Playlist) {
             videoName.text = playlistModel.kind
-
         }
-
         fun initialize(list: Playlist, action: IOnClickListener) {
             itemView.setOnClickListener {
                 action.onItemClick(adapterPosition)
             }
-
-
         }
-
         interface IOnClickListener {
             fun onItemClick(position: Int)
         }

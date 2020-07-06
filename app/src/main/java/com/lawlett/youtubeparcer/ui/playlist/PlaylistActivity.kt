@@ -25,7 +25,6 @@ class PlaylistActivity : AppCompatActivity(), PlayListAdapter.PlaylistViewHolder
         viewModel = ViewModelProviders.of(this).get(PlaylistViewModel::class.java)
         setupToSubscribe()
 
-
         playlist_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         playlist_recycler.adapter = adapter
     }
@@ -37,9 +36,7 @@ class PlaylistActivity : AppCompatActivity(), PlayListAdapter.PlaylistViewHolder
             }
             Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
             Log.e("ololo", "setupToSubscribe: " + it.toString())
-
         })
-
     }
 
     override fun onItemClick(position: Int) {

@@ -1,5 +1,6 @@
 package com.lawlett.youtubeparcer.ui.playlist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,7 @@ class PlaylistViewModel : ViewModel() {
     }
 
     val channelId = "UC_IfiZu3VkesO3L58L9WPhA"
-        val apiKey = "AIzaSyCWK-EoCHecYMMFAvl-DI5iegR9s1WW20Y"
+    val apiKey = "AIzaSyCWK-EoCHecYMMFAvl-DI5iegR9s1WW20Y"
     val part = "snippet,contentDetails"
     val maxResult = "50"
 
@@ -29,10 +30,13 @@ class PlaylistViewModel : ViewModel() {
             retrofit2.Callback<Playlist> {
             override fun onFailure(call: Call<Playlist>, t: Throwable) {
                 data.value = null
+                Log.e("ololo", "onFailure: ${t.localizedMessage}")
+
             }
 
             override fun onResponse(call: Call<Playlist>, response: Response<Playlist>) {
                 data.value = response.body()
+                Log.e("ololo", "onResponse: ${response.body()}")
             }
 
         })
