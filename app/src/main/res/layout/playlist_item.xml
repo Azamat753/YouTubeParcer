@@ -1,44 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/playlist_image"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:layout_constraintTop_toTopOf="parent"
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/playlist_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/vidio_back"
+            android:background="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/playlist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/playlist_image"
+            android:layout_marginStart="40dp"
+            android:text="playlist"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/video_name"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@id/playlist_image"
+        android:layout_marginTop="30dp"
+        android:text="Emotional Well-being &amp; Healing \n Practices for Children"
         android:textColor="@android:color/black"
-        android:text="Emotional Well-being &amp; Healing \n Practices for Children"/>
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/relative"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/video_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/video_name"
-        android:text="32 video series"
-        app:layout_constraintStart_toEndOf="@id/playlist_image"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"/>
-
-
+        android:layout_marginTop="12dp"
+        android:text="32 video series"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/relative"
+        app:layout_constraintTop_toBottomOf="@id/video_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

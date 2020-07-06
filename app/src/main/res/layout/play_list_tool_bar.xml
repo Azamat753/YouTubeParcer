@@ -5,8 +5,6 @@
     android:layout_height="56dp"
     android:orientation="vertical">
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -32,16 +30,17 @@
                 android:text="Прогресс"
                 android:textColor="@android:color/black"
                 android:textSize="23dp"
-                android:visibility="invisible"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/more_btn"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/ic_info"
-                android:layout_marginStart="100dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="65dp"
+                app:srcCompat="@drawable/ic_info_icon" />
 
         </LinearLayout>
     </RelativeLayout>
+
 </androidx.appcompat.widget.Toolbar>

@@ -45,6 +45,7 @@ class PlayListAdapter(
     class PlaylistViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         var videoImage: ImageView = item.findViewById(R.id.playlist_image)
         var videoName: TextView = item.findViewById(R.id.video_name)
+        var playlistName:TextView=item.findViewById(R.id.playlist_name)
         var videoAmount: TextView = item.findViewById(R.id.video_amount)
 
         fun bind(playlistModel: Playlist) {
