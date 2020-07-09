@@ -1,18 +1,13 @@
 package com.lawlett.youtubeparcer.detail_playlist.recycler
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.extension.loadImage
 import com.lawlett.youtubeparcer.model.PlaylistItem
-import com.lawlett.youtubeparcer.model.Playlist
 import kotlinx.android.synthetic.main.detail_item.view.*
-import kotlinx.android.synthetic.main.playlist_item.view.*
 
 class DetailAdapter(
     private val listener: Listener
@@ -50,7 +45,6 @@ class DetailAdapter(
             itemView.setOnClickListener { listener.onItemClick(item) }
         }
     }
-
     interface Listener {
         fun onItemClick(dto: PlaylistItem)
     }

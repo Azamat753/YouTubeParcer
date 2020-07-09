@@ -11,12 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.detail_playlist.recycler.DetailAdapter
-import com.lawlett.youtubeparcer.extension.showToast
 import com.lawlett.youtubeparcer.model.PlaylistItem
-import com.lawlett.youtubeparcer.ui.playlist.PlaylistViewModel
-import com.lawlett.youtubeparcer.ui.playlist.recycler.PlayListAdapter
 import kotlinx.android.synthetic.main.activity_detail_playlist.*
-import kotlinx.android.synthetic.main.activity_playlist.*
 
 class DetailPlaylistActivity : AppCompatActivity(), DetailAdapter.Listener {
     private var viewModel: DetailModel? = null
@@ -29,8 +25,8 @@ class DetailPlaylistActivity : AppCompatActivity(), DetailAdapter.Listener {
         setupToSubscribe()
 
         Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
-        detial_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        detial_recycler.adapter = adapter
+        detail_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        detail_recycler.adapter = adapter
     }
 
     companion object {
