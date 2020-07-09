@@ -1,4 +1,3 @@
-package com.lawlett.youtubeparcer.detail_playlist.recycler
 
 import android.view.LayoutInflater
 import android.view.View
@@ -49,5 +48,3 @@ class DetailAdapter(
         fun onItemClick(dto: PlaylistItem)
     }
 }
-
-

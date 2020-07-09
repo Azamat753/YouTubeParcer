@@ -17,7 +17,7 @@ class PlaylistViewModel : ViewModel() {
     }
 
     val channelId = "UC_IfiZu3VkesO3L58L9WPhA"
-    val apiKey = "AIzaSyCGP5L-IV8ROZimTGrfUZyehgLhbU5tXCw"
+    val apiKey = "AIzaSyDbdea6a1RW6uBFdfna3cJ30FZ9fXMb9T8"
     val part = "snippet,contentDetails"
     val maxResult = "50"
 
