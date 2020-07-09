@@ -14,4 +14,11 @@ interface YoutubeApi {
         @Query("maxResult") maxResult: String
     ): retrofit2.Call<Playlist>
 
+@GET("v3/playlistItems")
+fun getSelectedPlaylist(
+@Query("part") part: String,
+@Query("key") apiKey: String,
+@Query("playlistId") playlist: String,
+@Query("maxResults") maxResult: String
+): retrofit2.Call<Playlist>
 }

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.playlist.SecondActivity"></activity>
+        <activity android:name=".detail_playlist.DetailPlaylistActivity"></activity>
         <activity android:name=".ui.playlist.PlaylistActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

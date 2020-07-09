@@ -1,4 +1,4 @@
-package com.lawlett.youtubeparcer.ui.playlist.recycler
+package com.lawlett.youtubeparcer.detail_playlist.recycler
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,20 +11,21 @@ import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.extension.loadImage
 import com.lawlett.youtubeparcer.model.PlaylistItem
 import com.lawlett.youtubeparcer.model.Playlist
+import kotlinx.android.synthetic.main.detail_item.view.*
 import kotlinx.android.synthetic.main.playlist_item.view.*
 
-class PlayListAdapter(
-    private val listener: IOnClickListener
+class DetailAdapter(
+    private val listener: Listener
 ) :
-    RecyclerView.Adapter<PlayListAdapter.PlaylistViewHolder>() {
+    RecyclerView.Adapter<DetailAdapter.DetailViewHolder>() {
     var list = mutableListOf<PlaylistItem>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PlaylistViewHolder {
+    ): DetailViewHolder {
         var view =
-            LayoutInflater.from(parent.context).inflate(R.layout.playlist_item, parent, false)
-        return PlaylistViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.detail_item, parent, false)
+        return DetailViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -34,25 +35,23 @@ class PlayListAdapter(
     fun addItems(list: MutableList<PlaylistItem>) {
         this.list.addAll(list)
         notifyDataSetChanged()
-
     }
 
-    override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
         holder.bind(list[position], listener)
-
     }
 
-    class PlaylistViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+    class DetailViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-        fun bind(item: PlaylistItem, listener: IOnClickListener) {
-            itemView.playlist_image.loadImage(item.snippet.thumbnails.high.url)
-            itemView.video_name.text=item.snippet.channelTitle
-            itemView.video_amount.text=item.contentDetails.itemCount+" videos in playlist"
+        fun bind(item: PlaylistItem, listener: Listener) {
+            itemView.detail_image.loadImage(item.snippet.thumbnails.high.url)
+            itemView.detail_video_name.text=item.snippet.channelTitle
+            itemView.detail_time.text=item.contentDetails.itemCount
             itemView.setOnClickListener { listener.onItemClick(item) }
         }
     }
 
-    interface IOnClickListener {
+    interface Listener {
         fun onItemClick(dto: PlaylistItem)
     }
 }

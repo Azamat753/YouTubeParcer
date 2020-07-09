@@ -1,4 +1,4 @@
-package com.lawlett.youtubeparcer.ui.playlist
+package com.lawlett.youtubeparcer.detail_playlist
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,7 +10,7 @@ import com.lawlett.youtubeparcer.network.YoutubeApi
 import retrofit2.Call
 import retrofit2.Response
 
-class PlaylistViewModel : ViewModel() {
+class DetailModel : ViewModel() {
 
     fun fetchPlaylist(): LiveData<Playlist?> {
         return fetchYoutubePlaylist()
@@ -26,7 +26,7 @@ class PlaylistViewModel : ViewModel() {
     fun fetchYoutubePlaylist(): LiveData<Playlist?> {
         apiService = RetrofitClient.create()
         val data = MutableLiveData<Playlist?>()
-        apiService?.fetchAllPlaylists(part, apiKey, channelId, maxResult)?.enqueue(object :
+        apiService?.getSelectedPlaylist(part, apiKey, channelId, maxResult)?.enqueue(object :
             retrofit2.Callback<Playlist> {
             override fun onFailure(call: Call<Playlist>, t: Throwable) {
                 data.value = null
@@ -38,6 +38,7 @@ class PlaylistViewModel : ViewModel() {
                 data.value = response.body()
                 Log.e("ololo", "onResponse: ${response.body()}")
             }
+
         })
         return data
     }
