@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lawlett.youtubeparcer">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".detail_playlist.DetailPlaylistActivity"></activity>
+        <activity android:name=".ui.vidio_detail.VideoDetailActivity"></activity>
+        <activity android:name=".ui.detail_playlist.DetailPlaylistActivity" />
         <activity android:name=".ui.playlist.PlaylistActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
