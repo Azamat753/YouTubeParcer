@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.playlist.PlaylistActivity">
 
+    <include
+        android:id="@+id/first_internet_check"
+        android:visibility="gone"
+        layout="@layout/internet_check"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/first_page_toolbar"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
-
         <include layout="@layout/play_list_tool_bar" />
     </androidx.cardview.widget.CardView>
 
