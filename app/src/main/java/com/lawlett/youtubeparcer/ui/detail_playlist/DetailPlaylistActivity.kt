@@ -63,7 +63,6 @@ class DetailPlaylistActivity : BaseActivity(R.layout.activity_detail_playlist),
 
     override fun onItemClick(dto: PlaylistItem) {
 VideoDetailActivity.instanceVideoDetail(this,dto.snippet.resourceId.videoId)
-        showToast(this,dto.snippet.resourceId.videoId)
     }
 
     private fun setupToSubscribe() {

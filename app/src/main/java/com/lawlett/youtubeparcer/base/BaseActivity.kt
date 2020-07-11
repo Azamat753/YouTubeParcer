@@ -13,10 +13,11 @@ abstract class BaseActivity(private val layout: Int) : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout)
         setupUI()
-isOnline(this)
+        isOnline(this)
         setupLiveData()
     }
-abstract fun isOnline(context: Context):Boolean
+
+    abstract fun isOnline(context: Context): Boolean
     abstract fun setupLiveData()
 
     abstract fun setupUI()
