@@ -20,7 +20,7 @@ class PlaylistRepository : ViewModel() {
     val videoId=myVideoId
     val playlistId =id
     val channelId = "UC2il4ZKYE7gwjoVDGAbgMbQ"
-    val apiKey = "AIzaSyDbdea6a1RW6uBFdfna3cJ30FZ9fXMb9T8"
+    val apiKey = "AIzaSyAI7JVk-p9YhcvUFZFWXN1USfgBBq_gojk"
     val part = "snippet,contentDetails"
     val maxResult = "50"
 

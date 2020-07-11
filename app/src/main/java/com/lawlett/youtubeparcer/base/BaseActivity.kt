@@ -16,6 +16,7 @@ abstract class BaseActivity(private val layout: Int) : AppCompatActivity() {
         setupLiveData()
     }
 
+
     abstract fun setupLiveData()
 
     abstract fun setupUI()

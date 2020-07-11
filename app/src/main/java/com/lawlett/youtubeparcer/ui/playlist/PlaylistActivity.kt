@@ -3,12 +3,9 @@ package com.lawlett.youtubeparcer.ui.playlist
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.annotation.RequiresApi
@@ -18,15 +15,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.extension.showToast
-import com.lawlett.youtubeparcer.model.Playlist
-import com.lawlett.youtubeparcer.ui.detail_playlist.DetailPlaylistActivity
 import com.lawlett.youtubeparcer.model.PlaylistItem
 import com.lawlett.youtubeparcer.repository.PlaylistRepository
+import com.lawlett.youtubeparcer.ui.detail_playlist.DetailPlaylistActivity
 import com.lawlett.youtubeparcer.ui.playlist.recycler.PlayListAdapter
 import kotlinx.android.synthetic.main.activity_playlist.*
 import kotlinx.android.synthetic.main.internet_check.*
-import okhttp3.internal.waitMillis
-import java.net.NetworkInterface
 
 class PlaylistActivity : AppCompatActivity(), PlayListAdapter.IOnClickListener {
 
