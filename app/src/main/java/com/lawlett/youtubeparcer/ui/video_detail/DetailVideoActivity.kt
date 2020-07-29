@@ -71,8 +71,7 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks, DialogAdapter.IDialo
     private fun setupRecycler() {
         val dialog=Dialog(this)
         val recyclerView=dialog.findViewById(R.id.dialog_recycler) as? RecyclerView
-        recyclerView?.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView?.adapter = adapter
         adapter.addItems(listOfFormatVideo)
     }
@@ -253,7 +252,10 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks, DialogAdapter.IDialo
     }
 
     override fun onItemClick(dto: YoutubeVideo) {
-
+        Log.e("quality", "onItemClick: ${dto.height}" )
+        Log.e("quality", "onItemClick: ${dto.videoFile}" )
+        Log.e("quality", "onItemClick: ${dto.audioFile}" )
+        Log.e("quality", "onItemClick: ${dto.isSelected}" )
     }
 
 }

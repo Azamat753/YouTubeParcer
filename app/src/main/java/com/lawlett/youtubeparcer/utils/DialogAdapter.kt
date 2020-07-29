@@ -40,13 +40,12 @@ class DialogAdapter(
 
         fun bind(item: YoutubeVideo, listener: IDialogClickListener) {
             itemView.first_q.text = item.height.toString()+"p"
-            itemView.first_q.setOnClickListener { listener }
+            itemView.first_q.setOnClickListener { listener.onItemClick(item) }
             Log.e("quality", "bind:${item.videoFile} ")
             Log.e("quality", "bind:${item.audioFile} ")
             Log.e("quality", "bind:${item.height} ")
         }
     }
-
     interface IDialogClickListener {
         fun onItemClick(dto: YoutubeVideo)
     }
