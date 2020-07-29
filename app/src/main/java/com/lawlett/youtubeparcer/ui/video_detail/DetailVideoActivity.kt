@@ -3,6 +3,7 @@ package com.lawlett.youtubeparcer.ui.video_detail
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.app.DownloadManager
 import android.content.Context
@@ -22,6 +23,7 @@ import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
@@ -40,13 +42,13 @@ import kotlinx.android.synthetic.main.detail_play_list_tool_bar.*
 import org.koin.android.ext.android.inject
 
 
-class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialogClickListener {
+class DetailVideoActivity : AppCompatActivity(), CallBacks, DialogAdapter.IDialogClickListener {
     private val STORAGE_PERMISSION_CODE: Int = 1000
     private val viewModel by inject<DetailVideoViewModel>()
     var list = mutableListOf<PlaylistItem>()
     private lateinit var player: Player
     private lateinit var playerManager: PlayerManager
-    var adapter= DialogAdapter(this)
+    var adapter = DialogAdapter(this)
     private var listOfFormatVideo = mutableListOf<YoutubeVideo>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,27 +61,31 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialog
     }
 
     private fun downloadClick() {
-        if (download_view!=null)
-        download_view.setOnClickListener {
-            showDialog()
+        if (download_view != null)
+            download_view.setOnClickListener {
+                showDialog()
 
-        }
+            }
     }
-    private fun setupRecycler(){
-        dialog_recycler.layoutManager =
+
+    private fun setupRecycler() {
+        val dialog=Dialog(this)
+        val recyclerView=dialog.findViewById(R.id.dialog_recycler) as? RecyclerView
+        recyclerView?.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        dialog_recycler.adapter=adapter
+        recyclerView?.adapter = adapter
         adapter.addItems(listOfFormatVideo)
     }
+
     private fun showDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.custom_dialog)
-        val firstClick = dialog.findViewById(R.id.first_q) as RadioButton
+        val firstClick = dialog.findViewById(R.id.first_q) as? RadioButton
 //        val secondCLick = dialog.findViewById(R.id.second_q) as RadioButton
 //        val thirdClick = dialog.findViewById(R.id.third_q) as RadioButton
-        val downloadClick = dialog.findViewById(R.id.download_button) as Button
+        val downloadClick = dialog.findViewById(R.id.download_button) as? Button
 //        secondCLick.setOnClickListener {
 //            showToast(this, "720p")
 //            dialog.setCancelable(true)
@@ -87,14 +93,18 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialog
 //        thirdClick.setOnClickListener {
 //            showToast(this, "480p")
 //        }
-        firstClick.setOnClickListener {
+        firstClick?.setOnClickListener {
             showToast(this, "1080p")
         }
-        downloadClick.setOnClickListener {
+        downloadClick?.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
+                    PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestPermissions(
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        STORAGE_PERMISSION_CODE
+                    )
                 } else {
                     startDownloading()
                 }
@@ -124,7 +134,11 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialog
         manager.enqueue(request)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             STORAGE_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -155,7 +169,7 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialog
 
 
     private fun setupToSubscribe() {
-        if (toolbar_title!=null) {
+        if (toolbar_title != null) {
             toolbar_title.text = "Видео"
         }
         myVideoId?.let {
@@ -221,6 +235,7 @@ class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialog
                 }
             }
             listOfFormatVideo.add(yVideo)
+            Log.e("quality", "addFormatToList: $listOfFormatVideo" )
         }
     }
 

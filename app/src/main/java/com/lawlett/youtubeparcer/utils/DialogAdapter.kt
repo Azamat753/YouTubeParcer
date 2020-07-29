@@ -34,15 +34,16 @@ class DialogAdapter(
 
     override fun onBindViewHolder(holder: DialogViewHolder, position: Int) {
         holder.bind(list[position], listener)
+        notifyDataSetChanged()
     }
     class DialogViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         fun bind(item: YoutubeVideo, listener: IDialogClickListener) {
-            itemView.first_q.text = item.height.toString()
+            itemView.first_q.text = item.height.toString()+"p"
             itemView.first_q.setOnClickListener { listener }
             Log.e("quality", "bind:${item.videoFile} ")
-            Log.e("quality", "bind:${item.audioFile} " )
-            Log.e("quality", "bind:${item.height} " )
+            Log.e("quality", "bind:${item.audioFile} ")
+            Log.e("quality", "bind:${item.height} ")
         }
     }
 

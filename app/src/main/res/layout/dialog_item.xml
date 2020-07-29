@@ -41,7 +41,5 @@
 <!--                android:buttonTint="@android:color/holo_red_light"-->
 <!--                android:text="480p" />-->
         </RadioGroup>
-
-
     </LinearLayout>
 </FrameLayout>
