@@ -25,9 +25,8 @@ interface YoutubeApi {
 
     @GET("v3/videos")
     fun getSelectedVideo(
-        @Query("part") part: String,
         @Query("key") apiKey: String,
-        @Query("id") videoId: String,
-        @Query("maxResults") maxResult: String
+        @Query("part") part: String,
+        @Query("id") videoId: String
     ):Call<Playlist>
 }

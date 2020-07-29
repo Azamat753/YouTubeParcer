@@ -66,6 +66,14 @@ dependencies {
     implementation 'com.android.support:design:22.2.1'
     //player
     implementation 'com.google.android.exoplayer:exoplayer:2.8.4'
+    //Koin
+    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
+    implementation "org.koin:koin-core:2.0.1"
+
+    implementation 'com.github.haarigerharald:android-youtubeextractor:2.1.0'
+    implementation 'com.github.HaarigerHarald:android-youtubeExtractor:2.1.0'
+
+    implementation 'com.mindorks.android:prdownloader:0.5.0'
 
 
 }

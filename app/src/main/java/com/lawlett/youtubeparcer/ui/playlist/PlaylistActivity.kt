@@ -11,28 +11,25 @@ import android.view.View.VISIBLE
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.extension.showToast
 import com.lawlett.youtubeparcer.model.PlaylistItem
-import com.lawlett.youtubeparcer.repository.PlaylistRepository
 import com.lawlett.youtubeparcer.ui.detail_playlist.DetailPlaylistActivity
 import com.lawlett.youtubeparcer.ui.playlist.recycler.PlayListAdapter
 import kotlinx.android.synthetic.main.activity_playlist.*
 import kotlinx.android.synthetic.main.internet_check.*
+import org.koin.android.ext.android.inject
 
 class PlaylistActivity : AppCompatActivity(), PlayListAdapter.IOnClickListener {
 
-    private var viewModel: PlaylistRepository? = null
+    private val viewModel by inject<PlaylistViewModel>()
     private var adapter = PlayListAdapter(this)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_playlist)
-        viewModel = ViewModelProviders.of(this).get(PlaylistRepository::class.java)
-        setupToSubscribe()
 
         playlist_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -51,9 +48,11 @@ class PlaylistActivity : AppCompatActivity(), PlayListAdapter.IOnClickListener {
             playlist_recycler.visibility = GONE
         }
         try_again.setOnClickListener {
-            showToast(this,"try again")
-            startActivity(Intent(this,PlaylistActivity::class.java))
+            showToast(this, "try again")
+            startActivity(Intent(this, PlaylistActivity::class.java))
         }
+        setupToSubscribe()
+
     }
 
     private fun setupToSubscribe() {
