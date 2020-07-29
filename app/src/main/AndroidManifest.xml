@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.vidio_detail.DetailVideoActivity"></activity>
+        <activity android:name=".ui.video_detail.DetailVideoActivity"></activity>
         <activity android:name=".ui.detail_playlist.DetailPlaylistActivity" />
         <activity android:name=".ui.playlist.PlaylistActivity">
             <intent-filter>

@@ -1,7 +1,7 @@
 package com.lawlett.youtubeparcer
 
 import com.lawlett.youtubeparcer.ui.detail_playlist.DetailPlaylistActivity
-import com.lawlett.youtubeparcer.ui.vidio_detail.DetailVideoActivity
+import com.lawlett.youtubeparcer.ui.video_detail.DetailVideoActivity
 
 object Constants{
     val videoId= DetailVideoActivity.myVideoId

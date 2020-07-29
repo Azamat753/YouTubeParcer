@@ -1,4 +1,4 @@
-package com.lawlett.youtubeparcer.ui.vidio_detail
+package com.lawlett.youtubeparcer.ui.video_detail
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -15,11 +15,13 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.util.SparseArray
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
@@ -28,67 +30,75 @@ import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.extension.showToast
 import com.lawlett.youtubeparcer.model.PlaylistItem
 import com.lawlett.youtubeparcer.utils.CallBacks
+import com.lawlett.youtubeparcer.utils.DialogAdapter
 import com.lawlett.youtubeparcer.utils.PlayerManager
 import com.lawlett.youtubeparcer.utils.YoutubeVideo
+import kotlinx.android.synthetic.main.activity_playlist.*
 import kotlinx.android.synthetic.main.activity_video_detail.*
+import kotlinx.android.synthetic.main.custom_dialog.*
 import kotlinx.android.synthetic.main.detail_play_list_tool_bar.*
 import org.koin.android.ext.android.inject
 
 
-class DetailVideoActivity : AppCompatActivity(), CallBacks {
-    private val STORAGE_PERMISSION_CODE:Int=1000
+class DetailVideoActivity : AppCompatActivity(), CallBacks,DialogAdapter.IDialogClickListener {
+    private val STORAGE_PERMISSION_CODE: Int = 1000
     private val viewModel by inject<DetailVideoViewModel>()
     var list = mutableListOf<PlaylistItem>()
     private lateinit var player: Player
     private lateinit var playerManager: PlayerManager
+    var adapter= DialogAdapter(this)
     private var listOfFormatVideo = mutableListOf<YoutubeVideo>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_detail)
         setupToSubscribe()
+        setupRecycler()
         setupExoPlayer()
         backPressedClick()
         downloadClick()
     }
 
     private fun downloadClick() {
+        if (download_view!=null)
         download_view.setOnClickListener {
             showDialog()
 
         }
     }
-
+    private fun setupRecycler(){
+        dialog_recycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        dialog_recycler.adapter=adapter
+        adapter.addItems(listOfFormatVideo)
+    }
     private fun showDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.custom_dialog)
         val firstClick = dialog.findViewById(R.id.first_q) as RadioButton
-        firstClick.setLinkTextColor(Color.RED)
-        val secondCLick = dialog.findViewById(R.id.second_q) as RadioButton
-        val thirdClick = dialog.findViewById(R.id.third_q) as RadioButton
+//        val secondCLick = dialog.findViewById(R.id.second_q) as RadioButton
+//        val thirdClick = dialog.findViewById(R.id.third_q) as RadioButton
         val downloadClick = dialog.findViewById(R.id.download_button) as Button
-        secondCLick.setOnClickListener {
-            showToast(this, "720p")
-            dialog.setCancelable(true)
-        }
-        thirdClick.setOnClickListener {
-            showToast(this, "480p")
-
-        }
+//        secondCLick.setOnClickListener {
+//            showToast(this, "720p")
+//            dialog.setCancelable(true)
+//        }
+//        thirdClick.setOnClickListener {
+//            showToast(this, "480p")
+//        }
         firstClick.setOnClickListener {
             showToast(this, "1080p")
         }
         downloadClick.setOnClickListener {
-            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
-                        PackageManager.PERMISSION_GRANTED){
-
-                    requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),STORAGE_PERMISSION_CODE)
-                }else{
-startDownloading()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
+                } else {
+                    startDownloading()
                 }
-            }else{
+            } else {
 
             }
             dialog.dismiss()
@@ -98,34 +108,39 @@ startDownloading()
 
     private fun startDownloading() {
         val url = listOfFormatVideo.last().videoFile?.url
-        val request =DownloadManager.Request(Uri.parse(url))
+        val request = DownloadManager.Request(Uri.parse(url))
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
         request.setTitle("Download")
         request.setDescription("The file is downloading...")
 
         request.allowScanningByMediaScanner()
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"${System.currentTimeMillis()}")
+        request.setDestinationInExternalPublicDir(
+            Environment.DIRECTORY_DOWNLOADS,
+            "${System.currentTimeMillis()}"
+        )
 
-        val manager=getSystemService(Context.DOWNLOAD_SERVICE)as DownloadManager
+        val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         manager.enqueue(request)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-       when(requestCode){
-           STORAGE_PERMISSION_CODE->{
-               if (grantResults.isNotEmpty()&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                   startDownloading()
-               }else{
-                   showToast(this,"Permission denied!")
-               }
-           }
-       }
+        when (requestCode) {
+            STORAGE_PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startDownloading()
+                } else {
+                    showToast(this, "Permission denied!")
+                }
+            }
+        }
     }
 
     private fun backPressedClick() {
-        back.setOnClickListener {
-            onBackPressed()
+        if (back != null) {
+            back.setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 
@@ -140,6 +155,9 @@ startDownloading()
 
 
     private fun setupToSubscribe() {
+        if (toolbar_title!=null) {
+            toolbar_title.text = "Видео"
+        }
         myVideoId?.let {
             viewModel.fetchVideoById(it).observe(this, Observer {
                 list.addAll(it!!.items)
@@ -217,6 +235,10 @@ startDownloading()
     }
 
     override fun onPlayingEnd() {
+    }
+
+    override fun onItemClick(dto: YoutubeVideo) {
+
     }
 
 }

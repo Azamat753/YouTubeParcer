@@ -1,4 +1,4 @@
-package com.lawlett.youtubeparcer.ui.vidio_detail
+package com.lawlett.youtubeparcer.ui.video_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

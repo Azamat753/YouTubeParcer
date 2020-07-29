@@ -11,6 +11,7 @@
         android:layout_margin="16dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/detail_video_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -30,6 +31,8 @@
         android:id="@+id/detail_video_name"
         android:layout_width="@dimen/width190"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/detail_time"
         android:layout_marginStart="12dp"
         android:layout_marginTop="30dp"
         android:text="@string/how_displacement"
@@ -44,9 +47,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="150dp"
         android:text="04:14"
         android:textColor="@android:color/black"
+        android:layout_marginBottom="10dp"
         android:textSize="@dimen/txSize18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/detail_video_name"
         app:layout_constraintStart_toEndOf="@id/cardView"
         app:layout_constraintTop_toBottomOf="@id/detail_video_name" />
 

@@ -4,14 +4,11 @@ import DetailAdapter
 import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lawlett.youtubeparcer.Constants.playlistId
 import com.lawlett.youtubeparcer.R
 import com.lawlett.youtubeparcer.base.BaseActivity
 import com.lawlett.youtubeparcer.model.PlaylistItem
-import com.lawlett.youtubeparcer.repository.PlaylistRepository
-import com.lawlett.youtubeparcer.ui.vidio_detail.DetailVideoActivity
+import com.lawlett.youtubeparcer.ui.video_detail.DetailVideoActivity
 import kotlinx.android.synthetic.main.activity_detail_playlist.*
 import kotlinx.android.synthetic.main.detail_play_list_tool_bar.*
 import org.koin.android.ext.android.inject

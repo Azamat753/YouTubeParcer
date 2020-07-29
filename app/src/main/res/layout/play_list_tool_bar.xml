@@ -9,38 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/settings_view"
-                android:layout_width="@dimen/size30"
-                android:layout_height="@dimen/size30"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/margin95"
-                android:text="Прогресс"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/txSize23"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:src="@drawable/youtubelogo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/more_btn"
                 android:layout_width="@dimen/size_30"
                 android:layout_height="@dimen/size30"
                 android:layout_marginStart="@dimen/margin80"
                 app:srcCompat="@drawable/ic_info_icon" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 
 </androidx.appcompat.widget.Toolbar>
