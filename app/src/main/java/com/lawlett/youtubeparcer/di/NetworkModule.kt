@@ -13,5 +13,4 @@ var networkModule = module {
     factory { provideYoutubeApi(get()) }
 }
 
-fun provideYoutubeApi(retrofit: RetrofitClient): YoutubeApi =
-    retrofit.provideRetrofit().create(YoutubeApi::class.java)
+fun provideYoutubeApi(retrofit: RetrofitClient): YoutubeApi = retrofit.provideRetrofit().create(YoutubeApi::class.java)
